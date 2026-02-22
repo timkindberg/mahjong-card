@@ -16,7 +16,7 @@ export function TileGroupDisplay({ group }: Props) {
 
   if (group.tileType === 'operator') {
     return (
-      <span className="text-[8px] text-stone-400 leading-none w-[4px] inline-block text-center">
+      <span className="text-[11px] text-stone-400 leading-none w-[3px] inline-block text-center">
         {'\u00A0'}
       </span>
     )
@@ -34,7 +34,7 @@ export function TileGroupDisplay({ group }: Props) {
   return (
     <button
       onClick={() => toggleComplete(group.id)}
-      className={`text-[8px] font-bold leading-none px-[1px] py-[1px] cursor-pointer border-none bg-transparent rounded-sm ${typeClass} ${
+      className={`text-[11px] font-bold leading-none px-0 py-[1px] cursor-pointer border-none bg-transparent rounded-sm ${typeClass} ${
         isCompleted ? 'bg-yellow-300 ring-1 ring-yellow-500' : ''
       }`}
     >

@@ -66,10 +66,6 @@ export function useIsFocused(id: string) {
   return useSyncExternalStore(subscribe, () => focusedHands.has(id))
 }
 
-export function useIsDimmed(id: string) {
-  return useSyncExternalStore(subscribe, () => focusedHands.size > 0 && !focusedHands.has(id))
-}
-
 export function useIsCompleted(id: string) {
   return useSyncExternalStore(subscribe, () => completedGroups.has(id))
 }
