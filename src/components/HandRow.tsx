@@ -33,7 +33,10 @@ export function HandRow({ hand }: Props) {
 
       {/* Description */}
       {hand.description && (
-        <span className={`${isPortrait ? 'text-[8px]' : 'text-[6px]'} text-stone-700 italic leading-none shrink-0 text-right mr-0.5`}>
+        <span
+          title={hand.description}
+          className={`${isPortrait ? 'text-[8px]' : 'text-[6px]'} text-stone-700 italic leading-none text-right mr-0.5 truncate min-w-0`}
+        >
           {hand.description}
         </span>
       )}
