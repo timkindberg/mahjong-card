@@ -1,14 +1,16 @@
 import { Card } from './components/Card'
 import { FullscreenButton } from './components/FullscreenButton'
+import { useIsPortrait } from './hooks/useIsPortrait'
 
 function App() {
+  const isPortrait = useIsPortrait()
+
   return (
     <div
       className="h-full w-full flex flex-col"
-      style={{
+      style={isPortrait ? {
         paddingTop: 'var(--safe-top)',
-        paddingRight: 'var(--safe-right)',
-        paddingBottom: 'var(--safe-bottom)',
+      } : {
         paddingLeft: 'var(--safe-left)',
       }}
     >
