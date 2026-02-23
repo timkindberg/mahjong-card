@@ -60,6 +60,17 @@ export function toggleComplete(id: string) {
   emit()
 }
 
+let collapsedGroups = loadSet('mj-collapsed')
+
+export function toggleCollapsed(id: string) {
+  const next = new Set(collapsedGroups)
+  if (next.has(id)) next.delete(id)
+  else next.add(id)
+  collapsedGroups = next
+  saveSet('mj-collapsed', next)
+  emit()
+}
+
 // --- Hooks: each returns a primitive, so components only re-render when their value changes ---
 
 export function useIsFocused(id: string) {
@@ -68,4 +79,8 @@ export function useIsFocused(id: string) {
 
 export function useIsCompleted(id: string) {
   return useSyncExternalStore(subscribe, () => completedGroups.has(id))
+}
+
+export function useIsCollapsed(id: string) {
+  return useSyncExternalStore(subscribe, () => collapsedGroups.has(id))
 }
