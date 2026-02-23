@@ -1,6 +1,7 @@
 import type { Hand } from '../types'
 import { TileGroupDisplay } from './TileGroup'
 import { useIsFocused, toggleFocus } from '../hooks/useCardState'
+import { useIsPortrait } from '../hooks/useIsPortrait'
 
 interface Props {
   hand: Hand
@@ -8,10 +9,11 @@ interface Props {
 
 export function HandRow({ hand }: Props) {
   const isFocused = useIsFocused(hand.id)
+  const isPortrait = useIsPortrait()
 
   return (
     <div
-      className={`flex items-center px-1 border-b border-stone-200 flex-1 cursor-pointer ${
+      className={`flex items-center ${isPortrait ? 'px-1.5 py-0.5' : 'px-1'} border-b border-stone-200 flex-1 cursor-pointer ${
         isFocused ? 'bg-yellow-200' : ''
       }`}
       onClick={() => toggleFocus(hand.id)}
@@ -31,18 +33,18 @@ export function HandRow({ hand }: Props) {
 
       {/* Description */}
       {hand.description && (
-        <span className="text-[6px] text-stone-700 italic leading-none shrink-0 text-right mr-0.5">
+        <span className={`${isPortrait ? 'text-[8px]' : 'text-[6px]'} text-stone-700 italic leading-none shrink-0 text-right mr-0.5`}>
           {hand.description}
         </span>
       )}
 
       {/* Concealed / Exposed + Points */}
-      <span className={`text-[8px] font-bold w-[10px] text-right shrink-0 leading-none ${
+      <span className={`${isPortrait ? 'text-[10px]' : 'text-[8px]'} font-bold w-[10px] text-right shrink-0 leading-none ${
         hand.concealed ? 'text-red-600' : 'text-stone-600'
       }`}>
         {hand.concealed ? 'C' : 'X'}
       </span>
-      <span className="text-[8px] font-semibold text-stone-700 w-[14px] text-right shrink-0 leading-none">
+      <span className={`${isPortrait ? 'text-[10px]' : 'text-[8px]'} font-semibold text-stone-700 w-[14px] text-right shrink-0 leading-none`}>
         {hand.points}
       </span>
     </div>
